@@ -18,6 +18,7 @@ jobs:
           host: ${{ secrets.DROPLET_HOST }}
           username: ${{ secrets.DROPLET_USER }}
           key: ${{ secrets.DROPLET_SSH_KEY }}
+          password: ${{ secrets.DROPLET_PASSWORD }}
           port: ${{ secrets.DROPLET_PORT || 22 }}
           source: scripts/deploy_droplet.sh
           target: /tmp/deploy_droplet.sh
@@ -28,6 +29,7 @@ jobs:
           host: ${{ secrets.DROPLET_HOST }}
           username: ${{ secrets.DROPLET_USER }}
           key: ${{ secrets.DROPLET_SSH_KEY }}
+          password: ${{ secrets.DROPLET_PASSWORD }}
           port: ${{ secrets.DROPLET_PORT || 22 }}
           script: |
             chmod +x /tmp/deploy_droplet.sh
