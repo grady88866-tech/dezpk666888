@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: devpass
+      POSTGRES_DB: dezpk
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+  backend:
+    build: ./backend
+    command: npm run start:dev
+    volumes:
+      - ./backend:/usr/src/app
+    ports:
+      - "4000:4000"
+    environment:
+      - DATABASE_URL=postgres://dev:devpass@postgres:5432/dezpk
+      - REDIS_URL=redis://redis:6379
+  frontend:
+    build: ./frontend
+    command: npm run dev
+    volumes:
+      - ./frontend:/usr/src/app
+    ports:
+      - "3000:3000"
+volumes:
+  pgdata:

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400">
+  <rect width="100%" height="100%" fill="#f8f9fa"/>
+  <text x="40" y="40" font-size="18" fill="#111">ERD（示意）</text>
+  <g fill="#fff" stroke="#333">
+    <rect x="40" y="60" width="220" height="80" rx="6"/>
+    <text x="50" y="85" font-size="12">users</text>
+    <text x="50" y="105" font-size="11">id, username, password_hash, created_at</text>
+
+    <rect x="300" y="60" width="260" height="80" rx="6"/>
+    <text x="310" y="85" font-size="12">wallets / wallet_transactions</text>
+    <text x="310" y="105" font-size="11">wallets: id,user_id,balance,frozen</text>
+    <text x="310" y="125" font-size="11">transactions: id,user_id,amount,type,before,after</text>
+
+    <rect x="40" y="180" width="260" height="100" rx="6"/>
+    <text x="50" y="205" font-size="12">clubs / club_members</text>
+    <text x="50" y="225" font-size="11">clubs: id,name,owner_id,wallet</text>
+
+    <rect x="340" y="180" width="320" height="120" rx="6"/>
+    <text x="350" y="205" font-size="12">rooms / games / game_players</text>
+    <text x="350" y="225" font-size="11">rooms: id,club_id,host,max_players,stake_rules</text>
+    <text x="350" y="245" font-size="11">games: id,room_id,state_json,started_at,ended_at</text>
+  </g>
+</svg>
