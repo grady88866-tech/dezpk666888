@@ -8,30 +8,25 @@ services:
       POSTGRES_DB: dezpk
     volumes:
       - pgdata:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+
   redis:
     image: redis:7
-    ports:
-      - "6379:6379"
+
   backend:
-    build: ./backend
-    command: npm run start:dev
-    volumes:
-      - ./backend:/usr/src/app
-      - /usr/src/app/node_modules
-    ports:
-      - "4000:4000"
+    image: ghcr.io/grady88866-tech/dezpk666888-backend:latest
     environment:
       - DATABASE_URL=postgres://dev:devpass@postgres:5432/dezpk
       - REDIS_URL=redis://redis:6379
-  frontend:
-    build: ./frontend
-    command: npm run dev
-    volumes:
-      - ./frontend:/usr/src/app
-      - /usr/src/app/node_modules
+    depends_on:
+      - postgres
+      - redis
     ports:
-      - "3000:3000"
+      - "4000:4000"
+
+  frontend:
+    image: ghcr.io/grady88866-tech/dezpk666888-frontend:latest
+    ports:
+      - "80:80"
+
 volumes:
   pgdata:
